@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mordor — The Dark Land</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Ambient layers -->
+    <div id="particle-canvas"></div>
+    <div id="fog-layer"></div>
+    <div id="lightning-flash"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav">
+        <div class="nav-brand">
+            <svg class="eye-icon" viewBox="0 0 60 30" width="40" height="20">
+                <path d="M30 0 Q45 15 60 15 Q45 15 30 30 Q15 15 0 15 Q15 15 30 0Z" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                <ellipse cx="30" cy="15" rx="6" ry="10" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+            </svg>
+            <span>MORDOR</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#realm" class="nav-link">The Realm</a></li>
+            <li><a href="#fortress" class="nav-link">Fortresses</a></li>
+            <li><a href="#armies" class="nav-link">Armies</a></li>
+            <li><a href="#ring" class="nav-link">The Ring</a></li>
+            <li><a href="#map" class="nav-link">Map</a></li>
+        </ul>
+        <button id="nav-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="eye-of-sauron" id="sauron-eye">
+                <div class="eye-outer">
+                    <div class="eye-middle">
+                        <div class="eye-inner">
+                            <div class="eye-pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="eye-glow"></div>
+            </div>
+            <h1 class="hero-title" data-text="MORDOR">
+                <span class="title-line">Welcome to</span>
+                <span class="title-main">MORDOR</span>
+            </h1>
+            <p class="hero-subtitle tengwar-border">One does not simply walk into Mordor.</p>
+            <p class="hero-description">The Black Land. Domain of the Dark Lord Sauron.<br>Where the shadows lie.</p>
+            <a href="#realm" class="cta-button">
+                <span>Enter the Dark Land</span>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
+            </a>
+        </div>
+        <div class="hero-mountains">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path d="M0,320 L0,200 L100,180 L200,220 L300,140 L400,190 L500,100 L600,160 L700,60 L720,80 L740,40 L760,80 L780,60 L850,150 L950,90 L1050,170 L1150,120 L1250,180 L1350,150 L1440,200 L1440,320Z" fill="#1a0a00"/>
+                <path d="M700,60 L720,80 L740,20 L760,80 L780,60" fill="none" stroke="#ff4500" stroke-width="2" class="mount-doom-glow"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Realm Section -->
+    <section id="realm" class="section realm-section">
+        <div class="section-header">
+            <div class="ornament">⚔</div>
+            <h2>The Dark Realm</h2>
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon">
+                    <svg viewBox="0 0 60 30" width="30" height="15">
+                        <path d="M30 0 Q45 15 60 15 Q45 15 30 30 Q15 15 0 15 Q15 15 30 0Z" fill="#ff4500"/>
+                    </svg>
+                </span>
+                <span class="divider-line"></span>
+            </div>
+            <p class="section-subtitle">A land of ash, fire, and shadow stretching from the Ephel Dúath to the Sea of Núrnen</p>
+        </div>
+        <div class="realm-grid">
+            <div class="realm-card" data-aos="fade-up">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" width="48" height="48">
+                        <path d="M32 8 L36 24 L48 16 L40 28 L56 32 L40 36 L48 48 L36 40 L32 56 L28 40 L16 48 L24 36 L8 32 L24 28 L16 16 L28 24Z" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                    </svg>
+                </div>
+                <h3>Gorgoroth</h3>
+                <p>The great plateau of Mordor, a vast desolation of ash and slag. Here the Dark Tower of Barad-dûr casts its shadow, and the fires of Mount Doom illuminate the poisoned sky.</p>
+            </div>
+            <div class="realm-card" data-aos="fade-up" data-delay="100">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" width="48" height="48">
+                        <path d="M16 56 L32 8 L48 56" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                        <path d="M28 20 L32 8 L36 20" fill="#ff4500" opacity="0.5"/>
+                        <path d="M20 48 L44 48" stroke="#ff4500" stroke-width="1"/>
+                    </svg>
+                </div>
+                <h3>Mount Doom</h3>
+                <p>Orodruin, the Fire-mountain. Within its Sammath Naur, the One Ring was forged by Sauron in the fires of the Second Age. Its eruptions darken the skies of all Middle-earth.</p>
+            </div>
+            <div class="realm-card" data-aos="fade-up" data-delay="200">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" width="48" height="48">
+                        <path d="M20 56 L20 20 L32 8 L44 20 L44 56" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                        <rect x="28" y="40" width="8" height="16" fill="none" stroke="#ff4500" stroke-width="1"/>
+                        <circle cx="32" cy="16" r="4" fill="#ff4500" opacity="0.5"/>
+                    </svg>
+                </div>
+                <h3>Barad-dûr</h3>
+                <p>The Dark Tower. A fortress of iron, built with the power of the One Ring. Its foundations run deep into the rock of Mordor, and at its peak burns the Eye — ever watchful, ever searching.</p>
+            </div>
+            <div class="realm-card" data-aos="fade-up" data-delay="300">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" width="48" height="48">
+                        <path d="M8 56 L32 40 L56 56" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                        <path d="M8 56 L32 32 L56 56" fill="none" stroke="#ff4500" stroke-width="1" opacity="0.5"/>
+                        <path d="M16 52 L48 52" stroke="#ff4500" stroke-width="1"/>
+                    </svg>
+                </div>
+                <h3>Ephel Dúath</h3>
+                <p>The Mountains of Shadow. A great fence of jagged peaks forming the western and southern borders of Mordor. Impassable save through Cirith Ungol and the Morgul Vale.</p>
+            </div>
+            <div class="realm-card" data-aos="fade-up" data-delay="400">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" width="48" height="48">
+                        <ellipse cx="32" cy="40" rx="24" ry="12" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                        <path d="M12 36 Q32 20 52 36" fill="none" stroke="#ff4500" stroke-width="1" opacity="0.5"/>
+                    </svg>
+                </div>
+                <h3>Sea of Núrnen</h3>
+                <p>A vast inland sea in southern Mordor. Its shores are tilled by slaves to feed the armies of the Dark Lord. The only fertile land in all the Black Country.</p>
+            </div>
+            <div class="realm-card" data-aos="fade-up" data-delay="500">
+                <div class="card-icon">
+                    <svg viewBox="0 0 64 64" width="48" height="48">
+                        <path d="M20 56 L20 24 L32 16 L44 24 L44 56" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                        <path d="M24 56 L24 28 L32 22 L40 28 L40 56" fill="none" stroke="#ff4500" stroke-width="1" opacity="0.5"/>
+                        <circle cx="32" cy="20" r="2" fill="#ff4500"/>
+                    </svg>
+                </div>
+                <h3>Minas Morgul</h3>
+                <p>Once Minas Ithil, Tower of the Moon. Captured by the Nazgûl, it became a place of dread — its pale, corpse-light glow visible for miles, a beacon of terror on Mordor's border.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fortresses Section -->
+    <section id="fortress" class="section fortress-section">
+        <div class="section-header">
+            <div class="ornament">🏰</div>
+            <h2>Dark Fortresses</h2>
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon">
+                    <svg viewBox="0 0 60 30" width="30" height="15">
+                        <path d="M30 0 Q45 15 60 15 Q45 15 30 30 Q15 15 0 15 Q15 15 30 0Z" fill="#ff4500"/>
+                    </svg>
+                </span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+        <div class="fortress-showcase">
+            <div class="fortress-item">
+                <div class="fortress-visual">
+                    <div class="tower-svg">
+                        <svg viewBox="0 0 200 400" width="200" height="400">
+                            <!-- Barad-dûr tower -->
+                            <defs>
+                                <linearGradient id="towerGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#ff4500"/>
+                                    <stop offset="30%" stop-color="#330000"/>
+                                    <stop offset="100%" stop-color="#1a0a00"/>
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="3" result="blur"/>
+                                    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                            </defs>
+                            <path d="M80 400 L80 150 L70 140 L75 120 L85 130 L85 100 L90 80 L95 90 L95 60 L100 30 L105 60 L105 90 L110 80 L115 100 L115 130 L125 120 L130 140 L120 150 L120 400Z" fill="url(#towerGrad)" stroke="#ff4500" stroke-width="0.5"/>
+                            <!-- Eye at top -->
+                            <ellipse cx="100" cy="40" rx="15" ry="8" fill="none" stroke="#ff4500" stroke-width="1.5" filter="url(#glow)" class="tower-eye"/>
+                            <ellipse cx="100" cy="40" rx="4" ry="7" fill="#ff4500" opacity="0.8" class="tower-eye"/>
+                            <!-- Windows -->
+                            <rect x="90" y="120" width="4" height="8" fill="#ff2200" opacity="0.4"/>
+                            <rect x="106" y="120" width="4" height="8" fill="#ff2200" opacity="0.4"/>
+                            <rect x="88" y="180" width="4" height="6" fill="#ff2200" opacity="0.3"/>
+                            <rect x="108" y="180" width="4" height="6" fill="#ff2200" opacity="0.3"/>
+                            <rect x="86" y="240" width="5" height="8" fill="#ff2200" opacity="0.2"/>
+                            <rect x="110" y="240" width="5" height="8" fill="#ff2200" opacity="0.2"/>
+                            <rect x="85" y="300" width="6" height="10" fill="#ff2200" opacity="0.15"/>
+                            <rect x="110" y="300" width="6" height="10" fill="#ff2200" opacity="0.15"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="fortress-info">
+                    <h3>Barad-dûr</h3>
+                    <p class="fortress-aka">The Dark Tower</p>
+                    <p>The greatest fortress ever built in Middle-earth. Founded upon the power of the One Ring in the Second Age, Barad-dûr endured the siege of the Last Alliance for seven years before Sauron was overthrown. Rebuilt in the Third Age as Sauron's power returned, it stands as a monument to domination — a tower of adamant and iron rising above the plateau of Gorgoroth, crowned by the Great Eye wreathed in flame.</p>
+                    <ul class="fortress-stats">
+                        <li><span class="stat-label">Height</span><span class="stat-value">Over 1,500 feet</span></li>
+                        <li><span class="stat-label">Founded</span><span class="stat-value">SA ~1000</span></li>
+                        <li><span class="stat-label">Location</span><span class="stat-value">Gorgoroth Plateau</span></li>
+                        <li><span class="stat-label">Power Source</span><span class="stat-value">The One Ring</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fortress-item reverse">
+                <div class="fortress-visual">
+                    <div class="tower-svg morgul-tower">
+                        <svg viewBox="0 0 200 400" width="200" height="400">
+                            <defs>
+                                <linearGradient id="morgulGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#44ff88" opacity="0.8"/>
+                                    <stop offset="30%" stop-color="#003311"/>
+                                    <stop offset="100%" stop-color="#001a0a"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M75 400 L75 160 L80 140 L85 150 L90 100 L95 110 L100 50 L105 110 L110 100 L115 150 L120 140 L125 160 L125 400Z" fill="url(#morgulGrad)" stroke="#44ff88" stroke-width="0.5"/>
+                            <circle cx="100" cy="60" r="12" fill="none" stroke="#44ff88" stroke-width="1" opacity="0.6"/>
+                            <circle cx="100" cy="60" r="6" fill="#44ff88" opacity="0.3"/>
+                            <rect x="92" y="130" width="4" height="8" fill="#44ff88" opacity="0.3"/>
+                            <rect x="106" y="130" width="4" height="8" fill="#44ff88" opacity="0.3"/>
+                            <rect x="90" y="200" width="4" height="6" fill="#44ff88" opacity="0.2"/>
+                            <rect x="108" y="200" width="4" height="6" fill="#44ff88" opacity="0.2"/>
+                            <rect x="88" y="270" width="5" height="8" fill="#44ff88" opacity="0.15"/>
+                            <rect x="110" y="270" width="5" height="8" fill="#44ff88" opacity="0.15"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="fortress-info">
+                    <h3>Minas Morgul</h3>
+                    <p class="fortress-aka">Tower of Dark Sorcery</p>
+                    <p>Once the fair tower of Minas Ithil, captured by the Nazgûl in TA 2002. Its walls emit a pale, sickly luminescence — a corpse-light that fills the Morgul Vale with dread. The Witch-king of Angmar rules from its throne, and from its gates march the armies of darkness. The very air around it is poisonous to the living.</p>
+                    <ul class="fortress-stats">
+                        <li><span class="stat-label">Original Name</span><span class="stat-value">Minas Ithil</span></li>
+                        <li><span class="stat-label">Captured</span><span class="stat-value">TA 2002</span></li>
+                        <li><span class="stat-label">Lord</span><span class="stat-value">The Witch-king</span></li>
+                        <li><span class="stat-label">Location</span><span class="stat-value">Morgul Vale</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Armies Section -->
+    <section id="armies" class="section armies-section">
+        <div class="section-header">
+            <div class="ornament">⚔</div>
+            <h2>Armies of Darkness</h2>
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon">
+                    <svg viewBox="0 0 60 30" width="30" height="15">
+                        <path d="M30 0 Q45 15 60 15 Q45 15 30 30 Q15 15 0 15 Q15 15 30 0Z" fill="#ff4500"/>
+                    </svg>
+                </span>
+                <span class="divider-line"></span>
+            </div>
+            <p class="section-subtitle">The legions that march under the lidless eye</p>
+        </div>
+        <div class="army-roster">
+            <div class="army-card">
+                <div class="army-banner" style="--banner-color: #8b0000;">
+                    <div class="banner-icon">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <path d="M24 4 L28 16 L24 14 L20 16Z" fill="#ff4500"/>
+                            <circle cx="24" cy="24" r="10" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                            <path d="M24 14 L24 34 M14 24 L34 24" stroke="#ff4500" stroke-width="1"/>
+                        </svg>
+                    </div>
+                </div>
+                <h3>Orcs of Mordor</h3>
+                <p>The backbone of Sauron's army. Bred in the pits beneath Barad-dûr, these creatures know nothing but war and obedience. Tens of thousands strong, they wield crude but effective weapons of iron.</p>
+                <div class="army-strength">
+                    <span class="strength-label">Strength</span>
+                    <div class="strength-bar"><div class="strength-fill" style="--fill: 90%"></div></div>
+                </div>
+            </div>
+            <div class="army-card">
+                <div class="army-banner" style="--banner-color: #4a0080;">
+                    <div class="banner-icon">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <path d="M14 36 L24 8 L34 36" fill="none" stroke="#9944ff" stroke-width="1.5"/>
+                            <path d="M18 28 L30 28" stroke="#9944ff" stroke-width="1"/>
+                            <circle cx="24" cy="14" r="3" fill="#9944ff" opacity="0.5"/>
+                        </svg>
+                    </div>
+                </div>
+                <h3>The Nazgûl</h3>
+                <p>Nine kings of Men, enslaved by the Rings of Power. Neither living nor dead, they are Sauron's most terrible servants. Their fell cry alone can break the will of armies, and their leader is the Witch-king of Angmar.</p>
+                <div class="army-strength">
+                    <span class="strength-label">Terror</span>
+                    <div class="strength-bar"><div class="strength-fill" style="--fill: 100%; --bar-color: #9944ff"></div></div>
+                </div>
+            </div>
+            <div class="army-card">
+                <div class="army-banner" style="--banner-color: #4a3000;">
+                    <div class="banner-icon">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <ellipse cx="24" cy="20" rx="14" ry="8" fill="none" stroke="#cc8800" stroke-width="1.5"/>
+                            <path d="M10 20 L10 36 M38 20 L38 36" stroke="#cc8800" stroke-width="2"/>
+                            <path d="M14 40 L34 40" stroke="#cc8800" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                </div>
+                <h3>Oliphaunts & Haradrim</h3>
+                <p>The Haradrim — Men of the South allied with Sauron. They ride to war upon the great Mûmakil, beasts the size of moving hills, armoured and towering above all other creatures on the field of battle.</p>
+                <div class="army-strength">
+                    <span class="strength-label">Power</span>
+                    <div class="strength-bar"><div class="strength-fill" style="--fill: 75%; --bar-color: #cc8800"></div></div>
+                </div>
+            </div>
+            <div class="army-card">
+                <div class="army-banner" style="--banner-color: #2a2a2a;">
+                    <div class="banner-icon">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <path d="M12 40 L24 8 L36 40 M16 32 L32 32" fill="none" stroke="#aaa" stroke-width="1.5"/>
+                            <path d="M20 24 L28 24" stroke="#aaa" stroke-width="1"/>
+                        </svg>
+                    </div>
+                </div>
+                <h3>Uruk-hai</h3>
+                <p>Greater Orcs — larger, stronger, and able to endure sunlight. Saruman bred his own in Isengard, but Mordor's Black Uruks are older and fiercer. Elite shock troops deployed where the fighting is hardest.</p>
+                <div class="army-strength">
+                    <span class="strength-label">Combat</span>
+                    <div class="strength-bar"><div class="strength-fill" style="--fill: 85%; --bar-color: #888"></div></div>
+                </div>
+            </div>
+            <div class="army-card">
+                <div class="army-banner" style="--banner-color: #003333;">
+                    <div class="banner-icon">
+                        <svg viewBox="0 0 48 48" width="36" height="36">
+                            <path d="M8 24 Q24 4 40 24 Q24 44 8 24Z" fill="none" stroke="#00aa88" stroke-width="1.5"/>
+                            <circle cx="24" cy="24" r="4" fill="#00aa88" opacity="0.5"/>
+                        </svg>
+                    </div>
+                </div>
+                <h3>Trolls of Mordor</h3>
+                <p>Olog-hai — battle trolls bred by Sauron to withstand sunlight. Armoured in black scales and wielding massive hammers, a single troll can smash through a shield wall. They know no fear, only hunger and rage.</p>
+                <div class="army-strength">
+                    <span class="strength-label">Brute Force</span>
+                    <div class="strength-bar"><div class="strength-fill" style="--fill: 95%; --bar-color: #00aa88"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Ring Section -->
+    <section id="ring" class="section ring-section">
+        <div class="ring-container">
+            <div class="ring-visual">
+                <div class="ring-object" id="the-ring">
+                    <div class="ring-band">
+                        <div class="ring-inscription" id="ring-inscription">
+                            <span>Ash nazg durbatulûk, ash nazg gimbatul, ash nazg thrakatulûk, agh burzum-ishi krimpatul</span>
+                        </div>
+                    </div>
+                    <div class="ring-shadow"></div>
+                </div>
+            </div>
+            <div class="ring-info">
+                <h2>The One Ring</h2>
+                <div class="divider left-align">
+                    <span class="divider-line"></span>
+                </div>
+                <blockquote class="ring-verse">
+                    <p>Three Rings for the Elven-kings under the sky,<br>
+                    Seven for the Dwarf-lords in their halls of stone,<br>
+                    Nine for Mortal Men doomed to die,<br>
+                    One for the Dark Lord on his dark throne<br>
+                    In the Land of Mordor where the Shadows lie.</p>
+                    <p class="verse-highlight">One Ring to rule them all, One Ring to find them,<br>
+                    One Ring to bring them all, and in the darkness bind them<br>
+                    In the Land of Mordor where the Shadows lie.</p>
+                </blockquote>
+                <div class="ring-details">
+                    <div class="ring-detail">
+                        <h4>Forged</h4>
+                        <p>In the fires of Mount Doom, circa SA 1600</p>
+                    </div>
+                    <div class="ring-detail">
+                        <h4>Power</h4>
+                        <p>Dominion over all other Rings of Power and their bearers</p>
+                    </div>
+                    <div class="ring-detail">
+                        <h4>Inscription</h4>
+                        <p>Written in the Black Speech of Mordor, in Tengwar script. Visible only when heated by flame.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section id="map" class="section map-section">
+        <div class="section-header">
+            <div class="ornament">🗺</div>
+            <h2>Map of Mordor</h2>
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon">
+                    <svg viewBox="0 0 60 30" width="30" height="15">
+                        <path d="M30 0 Q45 15 60 15 Q45 15 30 30 Q15 15 0 15 Q15 15 30 0Z" fill="#ff4500"/>
+                    </svg>
+                </span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+        <div class="map-container">
+            <svg id="mordor-map" viewBox="0 0 800 600" class="mordor-map">
+                <!-- Background -->
+                <rect width="800" height="600" fill="#0d0500"/>
+
+                <!-- Mountain ranges - Ephel Dúath (West) -->
+                <path d="M80 50 L60 80 L90 70 L70 120 L100 100 L80 160 L110 140 L90 200 L120 180 L100 240 L130 220 L110 280 L140 260 L120 320 L150 300 L130 360 L160 340 L140 400 L170 380 L150 440 L180 420 L160 480 L200 500 L250 520 L300 540 L350 550 L400 560 L450 550 L500 540 L550 520 L600 500"
+                      fill="none" stroke="#4a2800" stroke-width="3" class="mountain-range"/>
+
+                <!-- Mountain range - Ered Lithui (North) -->
+                <path d="M80 50 L120 60 L100 40 L160 55 L140 35 L220 50 L200 30 L280 45 L260 25 L340 40 L320 20 L400 35 L380 15 L460 30 L440 10 L520 25 L500 10 L580 20 L560 5 L640 18 L680 30 L720 50 L700 60"
+                      fill="none" stroke="#4a2800" stroke-width="3" class="mountain-range"/>
+
+                <!-- Gorgoroth Plateau -->
+                <ellipse cx="350" cy="200" rx="200" ry="120" fill="#1a0800" opacity="0.5" stroke="#2a1200" stroke-width="1" stroke-dasharray="4,4"/>
+                <text x="350" y="200" text-anchor="middle" fill="#5a3000" font-size="14" font-family="Cinzel" opacity="0.7">GORGOROTH</text>
+
+                <!-- Núrn -->
+                <ellipse cx="400" cy="420" rx="150" ry="80" fill="#0a1a0a" opacity="0.5" stroke="#1a3a1a" stroke-width="1" stroke-dasharray="4,4"/>
+                <text x="400" y="410" text-anchor="middle" fill="#2a5a2a" font-size="14" font-family="Cinzel" opacity="0.7">NÚRN</text>
+
+                <!-- Sea of Núrnen -->
+                <ellipse cx="420" cy="440" rx="80" ry="40" fill="#0a0a2a" opacity="0.6" stroke="#1a1a4a" stroke-width="1"/>
+                <text x="420" y="445" text-anchor="middle" fill="#3a3a6a" font-size="10" font-family="Cinzel">Sea of Núrnen</text>
+
+                <!-- Mount Doom -->
+                <g class="map-location" id="map-doom">
+                    <polygon points="320,140 340,80 360,140" fill="#2a0800" stroke="#ff4500" stroke-width="1.5"/>
+                    <circle cx="340" cy="90" r="8" fill="#ff4500" opacity="0.3" class="pulse-glow"/>
+                    <line x1="340" y1="80" x2="340" y2="70" stroke="#ff2200" stroke-width="1" opacity="0.5"/>
+                    <line x1="336" y1="82" x2="332" y2="72" stroke="#ff2200" stroke-width="0.5" opacity="0.3"/>
+                    <line x1="344" y1="82" x2="348" y2="72" stroke="#ff2200" stroke-width="0.5" opacity="0.3"/>
+                    <text x="340" y="160" text-anchor="middle" fill="#ff4500" font-size="11" font-family="Cinzel">Mount Doom</text>
+                </g>
+
+                <!-- Barad-dûr -->
+                <g class="map-location" id="map-barad-dur">
+                    <rect x="435" y="120" width="10" height="50" fill="#1a0a00" stroke="#ff4500" stroke-width="1"/>
+                    <polygon points="435,120 440,100 445,120" fill="#1a0a00" stroke="#ff4500" stroke-width="1"/>
+                    <ellipse cx="440" cy="105" rx="8" ry="4" fill="none" stroke="#ff4500" stroke-width="1" class="pulse-glow"/>
+                    <text x="440" y="185" text-anchor="middle" fill="#ff4500" font-size="11" font-family="Cinzel">Barad-dûr</text>
+                </g>
+
+                <!-- Black Gate -->
+                <g class="map-location" id="map-black-gate">
+                    <rect x="280" y="55" width="40" height="8" fill="#2a2a2a" stroke="#888" stroke-width="1" rx="2"/>
+                    <rect x="280" y="50" width="5" height="16" fill="#2a2a2a" stroke="#888" stroke-width="0.5"/>
+                    <rect x="315" y="50" width="5" height="16" fill="#2a2a2a" stroke="#888" stroke-width="0.5"/>
+                    <text x="300" y="45" text-anchor="middle" fill="#aaa" font-size="10" font-family="Cinzel">Black Gate</text>
+                </g>
+
+                <!-- Minas Morgul -->
+                <g class="map-location" id="map-morgul">
+                    <rect x="145" y="300" width="8" height="30" fill="#002a10" stroke="#44ff88" stroke-width="1"/>
+                    <polygon points="145,300 149,285 153,300" fill="#002a10" stroke="#44ff88" stroke-width="0.5"/>
+                    <circle cx="149" cy="290" r="5" fill="#44ff88" opacity="0.2" class="pulse-glow-green"/>
+                    <text x="149" y="345" text-anchor="middle" fill="#44ff88" font-size="10" font-family="Cinzel">Minas Morgul</text>
+                </g>
+
+                <!-- Cirith Ungol -->
+                <g class="map-location" id="map-cirith-ungol">
+                    <circle cx="130" cy="250" r="5" fill="none" stroke="#aaa" stroke-width="1"/>
+                    <text x="130" y="240" text-anchor="middle" fill="#888" font-size="9" font-family="Cinzel">Cirith Ungol</text>
+                </g>
+
+                <!-- Shelob's Lair label -->
+                <text x="105" y="225" text-anchor="middle" fill="#555" font-size="8" font-family="MedievalSharp" font-style="italic">Shelob's Lair</text>
+
+                <!-- Paths -->
+                <path d="M300 63 L340 100 L340 140" fill="none" stroke="#4a2200" stroke-width="1" stroke-dasharray="4,2" opacity="0.5"/>
+                <path d="M149 300 L130 250 L120 200 L110 160" fill="none" stroke="#2a4a2a" stroke-width="1" stroke-dasharray="4,2" opacity="0.4"/>
+
+                <!-- Compass -->
+                <g transform="translate(720, 520)">
+                    <circle r="25" fill="none" stroke="#4a2800" stroke-width="1"/>
+                    <text y="-30" text-anchor="middle" fill="#8a5800" font-size="12" font-family="Cinzel">N</text>
+                    <line x1="0" y1="-22" x2="0" y2="22" stroke="#4a2800" stroke-width="0.5"/>
+                    <line x1="-22" y1="0" x2="22" y2="0" stroke="#4a2800" stroke-width="0.5"/>
+                    <polygon points="0,-18 -3,-8 3,-8" fill="#8a5800"/>
+                </g>
+
+                <!-- Title -->
+                <text x="400" y="580" text-anchor="middle" fill="#4a2800" font-size="18" font-family="Cinzel Decorative" letter-spacing="8">MORDOR</text>
+            </svg>
+
+            <!-- Map tooltip -->
+            <div id="map-tooltip" class="map-tooltip hidden">
+                <h4></h4>
+                <p></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="section timeline-section">
+        <div class="section-header">
+            <div class="ornament">📜</div>
+            <h2>Dark Chronicle</h2>
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon">
+                    <svg viewBox="0 0 60 30" width="30" height="15">
+                        <path d="M30 0 Q45 15 60 15 Q45 15 30 30 Q15 15 0 15 Q15 15 30 0Z" fill="#ff4500"/>
+                    </svg>
+                </span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="timeline-date">SA ~1000</span>
+                    <h3>Sauron settles in Mordor</h3>
+                    <p>Choosing the land for its natural defenses — mountains on three sides — Sauron begins the construction of Barad-dûr.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="timeline-date">SA ~1600</span>
+                    <h3>The One Ring is forged</h3>
+                    <p>In the Sammath Naur of Mount Doom, Sauron forges the One Ring, pouring his will and power into it to dominate all other ring-bearers.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="timeline-date">SA 3434–3441</span>
+                    <h3>War of the Last Alliance</h3>
+                    <p>Elves and Men lay siege to Barad-dûr. After seven years, Sauron is overthrown when Isildur cuts the Ring from his hand.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="timeline-date">TA 2002</span>
+                    <h3>Fall of Minas Ithil</h3>
+                    <p>The Nazgûl capture Minas Ithil and rename it Minas Morgul — the Tower of Dark Sorcery.</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <span class="timeline-date">TA 2951</span>
+                    <h3>Sauron declares himself</h3>
+                    <p>Sauron openly returns to Mordor, rebuilds Barad-dûr, and Mount Doom erupts once more. The Shadow spreads.</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <span class="timeline-date">TA 3019</span>
+                    <h3>The Ring is destroyed</h3>
+                    <p>Frodo and Sam enter Mordor. The Ring falls into the fire of Mount Doom. Barad-dûr collapses. Sauron is defeated forever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <svg class="eye-icon" viewBox="0 0 60 30" width="50" height="25">
+                    <path d="M30 0 Q45 15 60 15 Q45 15 30 30 Q15 15 0 15 Q15 15 30 0Z" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                    <ellipse cx="30" cy="15" rx="6" ry="10" fill="none" stroke="#ff4500" stroke-width="1.5"/>
+                </svg>
+                <p>Built in the fires of Mount Doom</p>
+            </div>
+            <div class="footer-inscription">
+                <p class="black-speech">Ash nazg durbatulûk, ash nazg gimbatul,<br>ash nazg thrakatulûk, agh burzum-ishi krimpatul.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Third Age 3019 &middot; The Dark Lord Sauron &middot; All Rings Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
