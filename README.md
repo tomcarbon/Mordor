@@ -2,4 +2,4 @@ just an experiment to see what different engines would do with this prompt, and 
 
 1) codex 20260218: not worthy of mordor 1/10
 2) Claude01 20260319: "Build me a website worthy of Mordor." It's not too bad 4/10 .
-3) Claude02 20260319: "Build me a website worthy of Mordor. Do as much as you can." 6/10
+3) Claude02 20260319: "Build me a website worthy of Mordor. Do as much as you can." 5/10
