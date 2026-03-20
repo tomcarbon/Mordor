@@ -32,6 +32,7 @@
             <li><a href="#armies" class="nav-link">Armies</a></li>
             <li><a href="#ring" class="nav-link">The Ring</a></li>
             <li><a href="#map" class="nav-link">Map</a></li>
+            <li><a href="#game" class="nav-link">Game</a></li>
         </ul>
         <button id="nav-toggle" aria-label="Toggle navigation">
             <span></span><span></span><span></span>
@@ -510,6 +511,70 @@
         </div>
     </section>
 
+    <!-- Game Section -->
+    <section id="game" class="section game-section">
+        <div class="section-header">
+            <div class="ornament">👁</div>
+            <h2>Defend Mordor</h2>
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-icon">
+                    <svg viewBox="0 0 60 30" width="30" height="15">
+                        <path d="M30 0 Q45 15 60 15 Q45 15 30 30 Q15 15 0 15 Q15 15 30 0Z" fill="#ff4500"/>
+                    </svg>
+                </span>
+                <span class="divider-line"></span>
+            </div>
+            <p class="section-subtitle">Command the Eye of Sauron. Spot the intruders before they reach Mount Doom.</p>
+        </div>
+        <div class="game-wrapper">
+            <div class="game-hud">
+                <div class="hud-item">
+                    <span class="hud-label">Score</span>
+                    <span class="hud-value" id="game-score">0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Wave</span>
+                    <span class="hud-value" id="game-wave">1</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Lives</span>
+                    <span class="hud-value" id="game-lives">
+                        <span class="life">🔥</span><span class="life">🔥</span><span class="life">🔥</span><span class="life">🔥</span><span class="life">🔥</span>
+                    </span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">High Score</span>
+                    <span class="hud-value" id="game-highscore">0</span>
+                </div>
+                <div class="hud-item">
+                    <button class="pause-btn" id="game-pause-btn" disabled>
+                        <span id="pause-icon">❚❚</span>
+                    </button>
+                </div>
+            </div>
+            <div class="game-arena" id="game-arena">
+                <canvas id="game-canvas"></canvas>
+                <div class="game-overlay" id="game-overlay">
+                    <div class="overlay-content">
+                        <h3 id="overlay-title">Defend Mordor</h3>
+                        <p id="overlay-text">Intruders approach the Black Land. Click or tap them before they reach Mount Doom!</p>
+                        <p class="overlay-controls">
+                            <strong>Hobbits</strong> — small & sneaky (20 pts)<br>
+                            <strong>Rangers</strong> — fast & dangerous (15 pts)<br>
+                            <strong>Elves</strong> — swift as arrows (25 pts)<br>
+                            <strong>Wizards</strong> — powerful & resilient (40 pts)
+                        </p>
+                        <button class="cta-button game-start-btn" id="game-start-btn">
+                            <span>Begin the Hunt</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="game-log" id="game-log"></div>
+        </div>
+    </section>
+
     <!-- Timeline Section -->
     <section id="timeline" class="section timeline-section">
         <div class="section-header">
@@ -591,5 +656,6 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="js/game.js"></script>
 </body>
 </html>
