@@ -1,0 +1,164 @@
+.meter {
+  position: relative;
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.meterButton {
+  display: grid;
+  grid-template-columns: auto minmax(5rem, 1fr);
+  align-items: center;
+  gap: var(--sp-1) var(--sp-4);
+  inline-size: 100%;
+  max-inline-size: 34rem;
+  min-block-size: var(--tap-min);
+  padding: var(--sp-1) 0;
+  background: none;
+  border: 0;
+  color: var(--c-text);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-align: start;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.meterTitle {
+  color: var(--c-text-2);
+}
+
+.meterReading {
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: space-between;
+  white-space: nowrap;
+}
+
+.meterNumber {
+  color: var(--c-eye);
+}
+
+.meterBar {
+  grid-column: 1 / -1;
+  display: block;
+  block-size: 4px;
+  background: var(--c-raised);
+  outline: var(--bw-hair) solid var(--c-rule);
+}
+
+.meterFill {
+  display: block;
+  block-size: 100%;
+  background: var(--c-eye);
+  transform-origin: left;
+  transition: transform var(--dur-heavy) var(--ease-mass);
+}
+
+.meterPanel {
+  position: absolute;
+  inset-block-start: calc(100% + var(--sp-2));
+  inset-inline-start: 0;
+  inline-size: min(26rem, calc(100vw - 2 * var(--sp-gutter)));
+  padding: var(--sp-4);
+  background: var(--c-bg);
+  border: var(--bw-hair) solid var(--c-border);
+  box-shadow: var(--shadow-slab);
+  font-size: var(--fs-small);
+  line-height: 1.45;
+}
+
+.meterPanel p {
+  margin: 0;
+}
+
+.panelLevel {
+  margin-block-end: var(--sp-2) !important;
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  color: var(--c-eye);
+}
+
+.panelNote {
+  margin-block-start: var(--sp-3) !important;
+  padding-block-start: var(--sp-3);
+  border-block-start: var(--bw-hair) solid var(--c-rule);
+  color: var(--c-text-2);
+}
+
+.toggle {
+  flex: none;
+  min-block-size: var(--tap-min);
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--c-bg);
+  border: var(--bw-hair) solid var(--c-border);
+  color: var(--c-text);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  line-height: 1.15;
+  text-align: start;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  background: var(--c-raised);
+}
+
+.toggle[aria-pressed="true"] {
+  background: var(--c-action);
+  color: var(--c-on-action);
+}
+
+.toggle[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toggleState {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 1099px) {
+  .meterTitle {
+    display: none;
+  }
+
+  .meterButton {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 719px) {
+  .meterPanel {
+    inset-block: auto calc(100% + var(--sp-2));
+  }
+
+  .meterButton {
+    gap: 2px;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+
+  .meterReading {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .toggle {
+    max-inline-size: 7.6rem;
+    padding-inline: var(--sp-2);
+    letter-spacing: 0.02em;
+  }
+}

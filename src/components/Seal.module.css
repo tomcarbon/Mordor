@@ -1,0 +1,12 @@
+.seal {
+  display: block;
+  flex: none;
+  color: var(--c-seal);
+}
+
+.seal svg {
+  display: block;
+  color: inherit;
+  inline-size: 100%;
+  block-size: 100%;
+}

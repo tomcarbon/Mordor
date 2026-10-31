@@ -1,0 +1,56 @@
+/* Wraith-world. Colours crossfade through registered tokens, so no element needs its own
+   transition; filters touch media only, never text. */
+@property --c-bg { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-surface { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-raised { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-text { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-text-2 { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-muted { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-link { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-rule { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-border { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-accent { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-seal { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-action { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-decree-bg { syntax: "<color>"; inherits: true; initial-value: black; }
+@property --c-decree-ink { syntax: "<color>"; inherits: true; initial-value: black; }
+
+html {
+  transition-property: --c-bg, --c-surface, --c-raised, --c-text, --c-text-2, --c-muted, --c-link,
+    --c-rule, --c-border, --c-accent, --c-seal, --c-action, --c-decree-bg, --c-decree-ink;
+  transition-duration: var(--dur-ring);
+  transition-timing-function: var(--ease-mass);
+}
+
+main svg,
+main canvas {
+  filter: var(--ring-media-filter);
+}
+
+/* The Eye stays hot in both worlds: the shader and the static Eye handle the Ring themselves. */
+main [data-eye] canvas,
+main [data-eye] svg {
+  filter: none;
+}
+
+.ring-edge {
+  position: fixed;
+  inset-block: var(--strip-h) 0;
+  inset-inline: 0;
+  z-index: var(--z-ring-edge);
+  pointer-events: none;
+  opacity: var(--ring-edge-opacity);
+  transition: opacity var(--dur-ring) var(--ease-mass);
+  -webkit-backdrop-filter: blur(var(--ring-edge-blur));
+  backdrop-filter: blur(var(--ring-edge-blur));
+  -webkit-mask-image: radial-gradient(ellipse at center, transparent 82%, black 112%);
+  mask-image: radial-gradient(ellipse at center, transparent 82%, black 112%);
+}
+
+@media (max-width: 719px) {
+  .ring-edge {
+    inset-block: 0 var(--strip-h);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 6%, transparent 94%, black);
+    mask-image: linear-gradient(to bottom, black, transparent 6%, transparent 94%, black);
+  }
+}

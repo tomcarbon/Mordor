@@ -1,0 +1,258 @@
+.page {
+  position: relative;
+  padding-block-end: var(--sp-9);
+}
+
+/* The fire under the record. A fixed sheet whose opacity is the whole of the animation. */
+.heat {
+  --heat: 0;
+  position: fixed;
+  inset-block-end: 0;
+  inset-inline: 0;
+  block-size: 62vh;
+  background: radial-gradient(ellipse 72% 100% at 50% 100%, var(--c-accent), transparent 72%);
+  opacity: calc(var(--heat) * 0.5);
+  pointer-events: none;
+}
+
+.page > :not(.heat):not(.readout) {
+  position: relative;
+}
+
+.readout {
+  position: sticky;
+  z-index: 2;
+  inset-block-start: 0;
+  margin: 0;
+  padding: var(--sp-2) var(--sp-gutter);
+  background: var(--c-bg);
+  border-block-end: var(--bw-hair) solid var(--c-rule);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  color: var(--c-text);
+}
+
+.shaft {
+  margin: 0;
+  padding: var(--sp-7) var(--sp-gutter) 0;
+  list-style: none;
+}
+
+.gap {
+  position: relative;
+  display: flex;
+  block-size: calc(var(--gap) * 0.7);
+  margin-inline-start: var(--sp-2);
+  border-inline-start: var(--bw-rule) solid var(--c-rule);
+}
+
+.ticks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  block-size: 100%;
+}
+
+.ticks i {
+  display: block;
+  inline-size: var(--sp-3);
+  block-size: var(--bw-hair);
+  background: var(--c-muted);
+}
+
+.span {
+  align-self: center;
+  margin-inline-start: var(--sp-4);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.era {
+  margin: var(--sp-5) 0 var(--sp-6);
+  padding-block-end: var(--sp-3);
+  border-block-end: var(--bw-slab) solid var(--c-text);
+  font-family: var(--font-voice);
+  font-size: min(var(--fs-monument), 15vw);
+  font-weight: var(--fw-monument);
+  line-height: var(--lh-monument);
+}
+
+[data-armed] .entry {
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--sp-4)));
+  transition:
+    opacity var(--dur-heavy) var(--ease-mass),
+    transform var(--dur-heavy) var(--ease-mass);
+}
+
+[data-armed] .entry[data-seen] {
+  opacity: 1;
+  transform: none;
+}
+
+.year {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  margin: 0 0 var(--sp-3);
+}
+
+.yearFigure {
+  font-family: var(--font-voice);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-monument);
+  line-height: 1;
+  color: var(--c-text);
+}
+
+.yearPrefix {
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  color: var(--c-text-2);
+}
+
+.title {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-voice);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-voice);
+  line-height: var(--lh-heading);
+}
+
+.body p {
+  margin: 0;
+  max-inline-size: 58ch;
+}
+
+.refusal {
+  position: relative;
+  margin-block-start: var(--sp-2);
+  padding: var(--sp-6) var(--sp-5) var(--sp-7);
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+
+.refusalYear {
+  margin: 0;
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  color: var(--c-text-2);
+}
+
+.refusalTitle {
+  margin: var(--sp-4) 0;
+  font-family: var(--font-voice);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-monument);
+  line-height: var(--lh-heading);
+}
+
+.refusalText {
+  margin: 0;
+  max-inline-size: var(--measure);
+}
+
+.redactions {
+  display: grid;
+  gap: var(--sp-2);
+  max-inline-size: var(--measure);
+  margin-block-start: var(--sp-5);
+}
+
+.redactions i {
+  display: block;
+  block-size: 1.125rem;
+  background: var(--c-text);
+}
+
+.seal {
+  margin-block-start: var(--sp-6);
+  opacity: 0;
+  transform: rotate(var(--stamp-rotate)) scale(1.06);
+}
+
+.seal[data-landed] {
+  opacity: 1;
+  transform: rotate(var(--stamp-rotate));
+  transition:
+    opacity var(--dur-stamp) var(--ease-stamp),
+    transform var(--dur-stamp) var(--ease-stamp);
+}
+
+/* Ruled and blank: the register goes on after the entries stop. */
+.ledger {
+  margin: var(--sp-8) var(--sp-gutter) 0;
+}
+
+.ledger i {
+  display: block;
+  block-size: 3.25rem;
+  border-block-end: var(--bw-hair) solid var(--c-rule);
+}
+
+.closing {
+  max-inline-size: 18ch;
+  margin: var(--sp-7) var(--sp-gutter) 0;
+  font-family: var(--font-voice);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-voice);
+  line-height: 1.05;
+}
+
+@media (min-width: 960px) {
+  .readout {
+    inset-block-start: var(--strip-h);
+  }
+
+  .gap {
+    block-size: var(--gap);
+  }
+
+  /* A staircase: each entry starts a little further into the shaft than the one above. */
+  .entry {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 58ch);
+    gap: var(--sp-6);
+    margin-inline-start: calc(var(--step) * 2.1rem);
+  }
+
+  .year {
+    flex-direction: column;
+    gap: var(--sp-1);
+    margin: 0;
+  }
+
+  .refusal {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 0 var(--sp-5);
+    padding: var(--sp-8) var(--sp-5);
+  }
+
+  .refusal > * {
+    grid-column: 4 / span 7;
+  }
+
+  .seal {
+    position: absolute;
+    inset-block-end: var(--sp-6);
+    inset-inline-end: var(--sp-6);
+    margin: 0;
+  }
+
+  .closing {
+    margin-inline-start: calc((100% - 2 * var(--sp-gutter)) / 4);
+  }
+}

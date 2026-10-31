@@ -1,0 +1,40 @@
+.footer {
+  display: grid;
+  gap: var(--sp-5);
+  padding: var(--sp-7) var(--sp-gutter);
+  background: var(--c-surface);
+  border-block-start: var(--bw-rule) solid var(--c-rule);
+}
+
+.decree {
+  margin: 0;
+  max-inline-size: var(--measure);
+  color: var(--c-text);
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--sp-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap-min);
+}
+
+.notice {
+  margin: 0;
+  max-inline-size: var(--measure);
+  font-size: var(--fs-small);
+  color: var(--c-text-2);
+}

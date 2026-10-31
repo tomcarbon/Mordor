@@ -1,0 +1,34 @@
+.fallback {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--sp-4);
+  min-block-size: 100vh;
+  padding: var(--sp-6) var(--sp-gutter);
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+
+.fallback h1 {
+  margin: 0;
+  font-family: var(--font-voice);
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-voice);
+  line-height: var(--lh-heading);
+}
+
+.fallback p {
+  margin: 0;
+  max-inline-size: var(--measure);
+}
+
+.fallback a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap-min);
+}
+
+.fallback .notice {
+  font-size: var(--fs-small);
+  color: var(--c-text-2);
+}

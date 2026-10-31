@@ -1,0 +1,55 @@
+.page {
+  position: relative;
+  padding: var(--sp-9) var(--sp-gutter) var(--sp-8);
+  overflow: hidden;
+}
+
+.survey {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  color: var(--c-rule);
+  opacity: 0.5;
+}
+
+.code {
+  position: relative;
+  margin: 0 0 var(--sp-5);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  color: var(--c-text-2);
+}
+
+.title {
+  position: relative;
+  margin: 0;
+  max-inline-size: 12ch;
+  font-family: var(--font-voice);
+  font-size: var(--fs-monument);
+  font-weight: var(--fw-monument);
+  line-height: var(--lh-monument);
+}
+
+.lines {
+  position: relative;
+  max-inline-size: var(--measure);
+  margin-block-start: var(--sp-6);
+  padding-block-start: var(--sp-5);
+  border-block-start: var(--bw-slab) solid var(--c-text);
+  background: var(--c-bg);
+}
+
+.lines p {
+  margin: 0 0 var(--sp-2);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap-min);
+  margin-block-start: var(--sp-4);
+}

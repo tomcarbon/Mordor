@@ -1,0 +1,193 @@
+/* Design tokens: Black Land state portal. Owner: art-director (WO-0001.1). Rules: BRAND.md.
+   Components use the semantic --c-* tokens, never the raw palette and never literal hex.
+   Set data-ring="on" on <html>. It must stay after :root: both selectors have equal specificity. */
+
+:root {
+  color-scheme: dark;
+
+  /* Raw palette: scorched iron */
+  --iron-950: #0e0c0b;
+  --iron-900: #171412;
+  --iron-800: #231e1b;
+  --iron-600: #4a403a;
+  /* Ash */
+  --ash-100: #e8e1d6;
+  --ash-300: #b9afa2;
+  --ash-500: #93897c;
+  /* Ember and wax */
+  --ember-300: #ec7350;
+  --ember-500: #c8321a;
+  --wax-600: #98200f;
+  --wax-700: #7e1a0e;
+  --heat-200: #f6dda8;
+  --eye: #ff5a2e;
+  /* Decree stock (pale ash, never sepia) */
+  --stock-300: #cbc2b4;
+  --ink-900: #1a1512;
+  --ink-600: #4a4036;
+  --stamp-700: #8a1c10;
+
+  /* Semantic colour: surfaces */
+  --c-bg: var(--iron-950);
+  --c-surface: var(--iron-900);
+  --c-raised: var(--iron-800);
+  /* Semantic colour: text */
+  --c-text: var(--ash-100);
+  --c-text-2: var(--ash-300);
+  --c-muted: var(--ash-500);
+  --c-link: var(--ember-300);
+  /* Semantic colour: lines and controls */
+  --c-rule: var(--iron-600);         /* decorative only: not a control boundary */
+  --c-border: var(--ash-500);        /* control boundary, 3:1 or better */
+  --c-accent: var(--ember-500);      /* fills, rules, large text only */
+  --c-seal: var(--ember-500);
+  --c-action: var(--wax-700);
+  --c-action-hover: var(--wax-600);
+  --c-on-action: var(--ash-100);
+  --c-focus: var(--heat-200);
+  --c-eye: var(--eye);               /* the same in both worlds */
+  --c-selection-bg: var(--wax-700);
+  --c-selection-fg: var(--ash-100);
+  /* Semantic colour: decree surfaces */
+  --c-decree-bg: var(--stock-300);
+  --c-decree-ink: var(--ink-900);
+  --c-decree-muted: var(--ink-600);
+  --c-decree-stamp: var(--stamp-700);
+
+  /* Type families */
+  --font-voice: "Eczar Variable", "Eczar", Georgia, serif;
+  --font-record: "Source Serif 4 Variable", "Source Serif 4", Georgia, serif;
+  --font-stamp: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* Type scale: rem + vw so browser zoom still works */
+  --fs-stamp: 0.8125rem;
+  --fs-small: 0.9375rem;
+  --fs-body: 1.125rem;
+  --fs-lead: 1.375rem;
+  --fs-h3: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  --fs-h2: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem);
+  --fs-monument: clamp(3rem, 0.75rem + 12vw, 12rem);
+
+  --lh-monument: 0.95;
+  --lh-heading: 1;
+  --lh-body: 1.6;
+  --ls-stamp: 0.14em;
+  --fw-voice: 700;
+  --fw-monument: 800;
+  --measure: 66ch;
+
+  /* Spacing: 4px base */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.5rem;
+  --sp-6: 2rem;
+  --sp-7: 3rem;
+  --sp-8: 4.5rem;
+  --sp-9: 7rem;
+  --sp-gutter: clamp(1rem, 4vw, 3rem);
+  --tap-min: 44px;
+  --strip-h: 3.5rem;
+
+  /* Borders */
+  --bw-hair: 1px;
+  --bw-rule: 2px;
+  --bw-slab: 6px;
+  --radius: 0;
+  --focus-ring: 3px solid var(--c-focus);
+  --focus-offset: 2px;
+
+  /* Shadows: all light comes from below, off the fire */
+  --shadow-forge: inset 0 -1px 0 rgb(236 115 80 / 0.16), inset 0 1px 0 rgb(0 0 0 / 0.6);
+  --shadow-slab: 0 28px 48px -18px rgb(0 0 0 / 0.85);
+  --shadow-ember: 0 20px 44px -20px rgb(200 50 26 / 0.45);
+  --grain-opacity: 0.06;
+
+  /* Motion */
+  --dur-instant: 80ms;
+  --dur-stamp: 140ms;
+  --dur-swift: 220ms;
+  --dur-heavy: 480ms;
+  --dur-ring: 900ms;
+  --dur-takeover: 1600ms;
+  --ease-mass: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-stamp: cubic-bezier(0.2, 0, 0, 1);
+  --stamp-rotate: -2.5deg;
+  --flash-min-period: 400ms;         /* floor for any repeating luminance change: 2.5 per second */
+
+  /* Wraith-world effects: inert until the Ring is on */
+  --ring-edge-blur: 0px;
+  --ring-edge-opacity: 0;
+  --ring-media-filter: none;
+
+  /* Layers */
+  --z-strip: 100;
+  --z-palette: 200;
+  --z-ring-edge: 300;
+  --z-takeover: 400;
+}
+
+/* Wraith-world: everything drains except the Eye. --c-eye is deliberately not overridden. */
+[data-ring="on"] {
+  --c-bg: #1e2428;
+  --c-surface: #293035;
+  --c-raised: #353d43;
+
+  --c-text: #e2e7e8;
+  --c-text-2: #bcc6ca;
+  --c-muted: #a1adb3;
+  --c-link: #cfe0e6;
+
+  --c-rule: #4a555b;
+  --c-border: #8a979d;
+  --c-accent: #8a979d;
+  --c-seal: #8a979d;
+  --c-action: #4a555b;
+  --c-action-hover: #56636a;
+  --c-on-action: #e2e7e8;
+  --c-focus: #f2f5f6;
+  --c-selection-bg: #4a555b;
+  --c-selection-fg: #e2e7e8;
+
+  --c-decree-bg: #b4bdc1;
+  --c-decree-ink: #12171a;
+  --c-decree-muted: #3f4a50;
+  --c-decree-stamp: #3a444a;
+
+  --shadow-forge: inset 0 1px 0 rgb(255 255 255 / 0.05);
+  --shadow-slab: 0 28px 48px -18px rgb(10 14 16 / 0.7);
+  --shadow-ember: none;
+  --grain-opacity: 0.1;
+
+  --ring-edge-blur: 7px;
+  --ring-edge-opacity: 1;
+  --ring-media-filter: saturate(0.18) brightness(1.08) contrast(0.88);
+}
+
+/* Decree surfaces: remaps the semantic tokens, so components inside need no special cases. */
+[data-surface="decree"] {
+  --c-bg: var(--c-decree-bg);
+  --c-surface: var(--c-decree-bg);
+  --c-raised: var(--c-decree-bg);
+  --c-text: var(--c-decree-ink);
+  --c-text-2: var(--c-decree-muted);
+  --c-muted: var(--c-decree-muted);
+  --c-link: var(--c-decree-stamp);
+  --c-rule: var(--c-decree-muted);
+  --c-border: var(--c-decree-ink);
+  --c-accent: var(--c-decree-stamp);
+  --c-seal: var(--c-decree-stamp);
+  --c-focus: var(--c-decree-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-stamp: 1ms;
+    --dur-swift: 1ms;
+    --dur-heavy: 1ms;
+    --dur-ring: 1ms;
+    --dur-takeover: 1ms;
+    --stamp-rotate: 0deg;
+  }
+}

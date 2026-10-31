@@ -1,0 +1,103 @@
+.takeover {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-takeover);
+  outline: none;
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: var(--sp-5);
+  padding: var(--sp-7) var(--sp-gutter) var(--sp-8);
+  overflow-y: auto;
+  background: var(--iron-950);
+  color: var(--ash-100);
+  --c-focus: var(--heat-200);
+  animation: fade var(--dur-takeover) var(--ease-mass) both;
+}
+
+.veil[data-leaving] {
+  animation: release var(--dur-takeover) var(--ease-mass) both;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes release {
+  to {
+    opacity: 0;
+  }
+}
+
+.slit {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: 16%;
+  inline-size: clamp(0.5rem, 1.6vw, 1.5rem);
+  background: var(--c-eye);
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+}
+
+.title,
+.lines,
+.dismiss {
+  position: relative;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-voice);
+  font-size: var(--fs-monument);
+  font-weight: var(--fw-monument);
+  line-height: var(--lh-monument);
+}
+
+.lines {
+  max-inline-size: var(--measure);
+  font-size: var(--fs-lead);
+  line-height: 1.4;
+}
+
+.lines p {
+  margin: 0 0 var(--sp-2);
+}
+
+.dismiss {
+  align-self: flex-start;
+  min-block-size: var(--tap-min);
+  padding-inline: var(--sp-5);
+  background: var(--wax-700);
+  border: var(--bw-hair) solid var(--ash-500);
+  color: var(--ash-100);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.dismiss:hover {
+  background: var(--wax-600);
+}
+
+@media (max-width: 719px) {
+  .veil {
+    padding-inline-end: 28%;
+  }
+
+  .title {
+    font-size: var(--fs-h2);
+  }
+
+  .lines {
+    font-size: var(--fs-body);
+  }
+}

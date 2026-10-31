@@ -1,0 +1,433 @@
+.page {
+  min-block-size: 60vh;
+}
+
+/* The page holds still in play, by any route: keys, wheel, scrollbar. --road-gutter is the measured
+   scrollbar width, zero where it takes no room, so nothing shifts as it goes. (Not scrollbar-gutter:
+   that leaves fixed parts out, and reserved 15px under Chrome's hidden scrollbars.) Ctrl+wheel zoom
+   is untouched, and script can still align the page. */
+:global(html[data-road-playing]) {
+  overflow: hidden;
+  padding-inline-end: var(--road-gutter, 0);
+}
+
+/* Fixed parts ignore that padding, so they are held to the same width. */
+:global(html[data-road-playing] [data-strip]),
+:global(html[data-road-playing] .ring-edge) {
+  inset-inline-end: var(--road-gutter, 0);
+}
+
+.game {
+  padding-block-end: var(--sp-7);
+}
+
+.field {
+  position: relative;
+  block-size: min(calc(var(--road-vh, 100vh) - var(--strip-h) - var(--sp-3)), 54rem);
+  /* Never taller than the visible height: phone landscape has under 26rem to give. */
+  min-block-size: min(26rem, calc(var(--road-vh, 100vh) - var(--strip-h) - var(--sp-3)));
+  margin-inline: var(--sp-gutter);
+  overflow: hidden;
+  border: var(--bw-hair) solid var(--c-rule);
+  background: var(--c-bg);
+  scroll-margin-block-start: calc(var(--strip-h) + var(--sp-2));
+}
+
+.canvas {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  touch-action: none;
+}
+
+.canvas:focus {
+  outline: none;
+}
+
+.canvas:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: calc(var(--focus-offset) * -3);
+}
+
+.noCanvas {
+  position: absolute;
+  inset-block-start: var(--sp-4);
+  inset-inline: var(--sp-4);
+  margin: 0;
+}
+
+/* HUD: Stamp face on iron, in the DOM, so the wraith world can never soften it. */
+.hud {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-5);
+  align-items: end;
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--c-bg);
+  border-block-end: var(--bw-hair) solid var(--c-rule);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  color: var(--c-text-2);
+  pointer-events: none;
+}
+
+.hud[hidden] {
+  display: none;
+}
+
+.stage,
+.status {
+  display: flex;
+  gap: var(--sp-3);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.stage span {
+  color: var(--c-text);
+}
+
+.status {
+  margin-inline-start: auto;
+}
+
+.meters {
+  display: grid;
+  flex: 1 1 22rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-4);
+  max-inline-size: 40rem;
+}
+
+.meter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2px var(--sp-2);
+}
+
+.meterLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meterValue {
+  color: var(--c-text);
+}
+
+.meterTrack {
+  grid-column: 1 / -1;
+  display: block;
+  block-size: 6px;
+  background: var(--c-raised);
+  border: var(--bw-hair) solid var(--c-rule);
+}
+
+.meterFill {
+  display: block;
+  block-size: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--c-text-2);
+}
+
+.meter[data-tone="eye"] .meterFill {
+  background: var(--c-eye);
+}
+
+.meter[data-tone="burden"] .meterFill {
+  background: var(--c-accent);
+}
+
+/* Touch controls appear only where a thumb is the pointer. */
+.touch {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  .touch:not([hidden]) {
+    position: absolute;
+    inset-block-end: var(--sp-4);
+    inset-inline: var(--sp-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    pointer-events: none;
+  }
+}
+
+.stick {
+  position: relative;
+  inline-size: 8.5rem;
+  block-size: 8.5rem;
+  border: var(--bw-rule) solid var(--c-border);
+  background: rgb(from var(--c-bg) r g b / 0.45);
+  pointer-events: auto;
+  touch-action: none;
+}
+
+.knob {
+  position: absolute;
+  inset: calc(50% - 1.75rem);
+  background: var(--c-raised);
+  border: var(--bw-rule) solid var(--c-text-2);
+}
+
+.touchButtons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  align-items: stretch;
+  inline-size: 8rem;
+  pointer-events: auto;
+}
+
+.touchPause,
+.touchRing {
+  min-block-size: var(--tap-min);
+  padding: var(--sp-2);
+  border: var(--bw-hair) solid var(--c-border);
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  touch-action: manipulation;
+}
+
+.touchRing {
+  min-block-size: 4.5rem;
+  background: var(--c-action);
+  color: var(--c-on-action);
+}
+
+.touchRing[aria-pressed="true"] {
+  outline: var(--bw-rule) solid var(--c-text);
+}
+
+/* Overlays are forms laid on the field: square, flat, lowered in without bounce. */
+.panel {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: min(36rem, calc(100% - var(--sp-5)));
+  max-block-size: calc(100% - var(--sp-5));
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
+  padding: var(--sp-5);
+  background: var(--c-surface);
+  border: var(--bw-hair) solid var(--c-border);
+  border-block-start: var(--bw-slab) solid var(--c-text);
+  color: var(--c-text);
+  font-size: var(--fs-small);
+}
+
+.panel h2 {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-voice);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-voice);
+  line-height: var(--lh-heading);
+}
+
+.panel p {
+  margin: 0 0 var(--sp-3);
+  color: var(--c-text-2);
+}
+
+.panel strong {
+  color: var(--c-text);
+}
+
+.panel .kicker,
+.panel .best {
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+}
+
+.keys {
+  display: grid;
+  gap: var(--sp-1);
+  margin: 0 0 var(--sp-3);
+  padding: 0;
+  list-style: none;
+  color: var(--c-text-2);
+}
+
+.keys b {
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  color: var(--c-text);
+}
+
+.action,
+.secondary {
+  display: block;
+  inline-size: 100%;
+  min-block-size: var(--tap-min);
+  margin-block-start: var(--sp-3);
+  padding: var(--sp-2) var(--sp-4);
+  border: var(--bw-hair) solid var(--c-border);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.action {
+  background: var(--c-action);
+  color: var(--c-on-action);
+}
+
+.action:hover {
+  background: var(--c-action-hover);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--c-text);
+}
+
+.exit {
+  display: inline-block;
+  margin-block-start: var(--sp-3);
+  padding-block: var(--sp-2);
+  min-block-size: var(--tap-min);
+  font-size: var(--fs-small);
+}
+
+/* Written record below the field. */
+.notes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-6);
+  padding-inline: var(--sp-gutter);
+  padding-block-end: var(--sp-8);
+}
+
+.notes h2 {
+  margin: 0 0 var(--sp-4);
+  font-family: var(--font-voice);
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-voice);
+  line-height: var(--lh-heading);
+}
+
+.notes p {
+  margin: 0 0 var(--sp-3);
+  max-inline-size: var(--measure);
+  font-size: var(--fs-small);
+  color: var(--c-text-2);
+}
+
+.notes dl {
+  margin: 0;
+}
+
+.notes dl > div {
+  padding-block: var(--sp-2);
+  border-block-start: var(--bw-hair) solid var(--c-rule);
+}
+
+.notes dt {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  font-family: var(--font-stamp);
+  font-size: var(--fs-stamp);
+  font-weight: 500;
+  letter-spacing: var(--ls-stamp);
+  text-transform: uppercase;
+  color: var(--c-text);
+}
+
+.notes dt span {
+  color: var(--c-text-2);
+  text-align: end;
+}
+
+.notes dd {
+  margin: var(--sp-1) 0 0;
+  font-size: var(--fs-small);
+  color: var(--c-text-2);
+}
+
+.touchHint {
+  margin-block-start: var(--sp-3);
+}
+
+@media (max-width: 719px) {
+  .field {
+    block-size: calc(var(--road-vh, 100vh) - var(--strip-h));
+    margin-inline: 0;
+    border-inline: 0;
+    scroll-margin-block-start: 0;
+  }
+
+  .hud {
+    gap: var(--sp-1) var(--sp-3);
+    padding: var(--sp-2);
+  }
+
+  .meters {
+    order: 3;
+    flex-basis: 100%;
+    gap: var(--sp-2);
+    max-inline-size: none;
+  }
+
+  .status {
+    gap: var(--sp-2);
+  }
+
+  .status [data-gait] {
+    display: none;
+  }
+
+  .stage span {
+    max-inline-size: 11rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .notes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Phone landscape: the thumbs share a short field with the HUD. */
+@media (pointer: coarse) and (max-height: 30rem) {
+  .touch:not([hidden]) {
+    inset-block-end: var(--sp-2);
+  }
+
+  .stick {
+    inline-size: 6.5rem;
+    block-size: 6.5rem;
+  }
+
+  .knob {
+    inset: calc(50% - 1.25rem);
+  }
+
+  .touchButtons {
+    gap: var(--sp-2);
+  }
+
+  .touchRing {
+    min-block-size: var(--tap-min);
+  }
+}
